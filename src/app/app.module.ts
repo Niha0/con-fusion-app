@@ -13,6 +13,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms'; 
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -43,20 +46,23 @@ import { LeaderService } from './services/leader.service';
     LoginComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
-    MatToolbarModule,
-    FlexLayoutModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
+    FormsModule,
     MatListModule,
+    MatToolbarModule,
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
-    AppRoutingModule,
+    MatSelectModule,
+    MatSlideToggleModule,
     MatDialogModule,
     MatFormFieldModule, 
     MatInputModule,
     MatCheckboxModule,
-    FormsModule
+    ReactiveFormsModule
   ],
   providers: [DishService,
   PromotionService,
