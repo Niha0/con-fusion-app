@@ -16,6 +16,7 @@
 
   <div fxFlex="40">
     <mat-card *ngIf="dish">
+      <h3 *ngIf="dish">{{dish.name | uppercase}}</h3>
      <img mat-card-image src={{dish.image}}
              alt={{dish.name}}>
       <mat-card-content>
