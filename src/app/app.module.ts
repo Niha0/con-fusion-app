@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+//import { HammerModule } from '@angular/platform-browser';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
@@ -26,7 +27,7 @@ import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { ContractComponent } from './contract/contract.component';
 import { LoginComponent } from './login/login.component';
-;
+
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
@@ -51,6 +52,7 @@ import { LeaderService } from './services/leader.service';
     BrowserAnimationsModule,
     FlexLayoutModule,
     FormsModule,
+    //HammerModule,
     MatListModule,
     MatToolbarModule,
     MatGridListModule,
