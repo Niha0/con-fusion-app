@@ -14,12 +14,13 @@ import { Dish } from '../shared/dish';
 export class MenuComponent implements OnInit {
 
   dishes : Dish[];
+  errMess: string;
 
   constructor(private dishService: DishService,@Inject('BaseURL') private BaseURL) { }
 
   ngOnInit() {
     console.log(this.BaseURL );
-    this.dishService.getDishes().subscribe(dishes => this.dishes = dishes);
+    this.dishService.getDishes().subscribe(dishes => this.dishes = dishes, errmess => this.errMess = <any>errmess);
 
   }
   
