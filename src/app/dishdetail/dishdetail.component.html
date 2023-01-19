@@ -38,10 +38,10 @@
     </mat-list>
 
     <mat-list *ngIf="commentForm.valid">
-        <h4 matLine>{{commentForm.get('comment').value}}</h4>
-        <p matLine>{{commentForm.get('rating').value} Stars</p>
+        <h4 matLine>{{commentForm.comment}}</h4>
+        <p matLine>{{commentForm.rating}} Stars</p>
         <p matLine>
-         <span> -- {{commentForm.get('author').value} </span>
+         <span> -- {{commentForm.author}} </span>
 
         </p>
     </mat-list>
