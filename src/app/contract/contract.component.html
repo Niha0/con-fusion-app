@@ -38,8 +38,9 @@
 
   <div fxFlex fxFlexOffset="20px" class="form-size">
     <h3>Send us your Feedback</h3>
-    <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
-
+    
+    <div *ngIf="stage == 1" [@expand]>
+ 
     <form novalidate [formGroup]="feedbackForm"  #fform="ngForm"  (ngSubmit)="onSubmit()">
       <p>
         <mat-form-field class="half-width">
@@ -78,7 +79,31 @@
           <textarea matInput formControlName="message" placeholder="Your Feedback" rows=12></textarea>
         </mat-form-field>
       </p>
-      <button type="submit" mat-button class="background-primary text-floral-white">Submit</button>
+      <button type="submit" mat-button class="background-primary text-floral-white"  [disabled]="feedbackForm.invalid">Submit</button>
     </form>
-  </div>
+    </div>
+
+    <div *ngIf="stage == 3" [@expand]>
+   
+        <h3>Your Submission</h3>
+      <h4 matLine>First Name: {{feedback.firstname}}</h4>
+        <h4 matLine>Last Name: {{feedback.lastname}}</h4>
+        <h4 matLine>Tel.Number: {{feedback.telnum}}</h4>
+        <h4 matLine>Email: {{feedback.email}}</h4>
+        <h4 matLine>Contact You?: {{feedback.agree}}</h4>
+        <h4 matLine>How ?:{{feedback.contacttype}}</h4>
+        <h4 matLine>Feedback:{{feedback.message}}</h4>
+  
+    </div>
+
+    <div  *ngIf="stage == 2" [@expand]>
+      <mat-spinner></mat-spinner><h4>Loading...Please Wait</h4>
+    </div>
+
+    <div *ngIf="feedErrMess " >
+      <h2>Error</h2>
+      <h4>{{feedErrMess}}</h4>
+    </div>
+</div>
+
 </div>

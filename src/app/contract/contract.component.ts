@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
-import { flyInOut } from '../animations/app.animation';
+import { flyInOut , expand} from '../animations/app.animation';
+import { FeedbackService } from '../services/feedback.service';
+
 
 @Component({
   selector: 'app-contract',
@@ -12,18 +14,23 @@ import { flyInOut } from '../animations/app.animation';
     'style': 'display: block;'
     },
     animations: [
-      flyInOut()
+      flyInOut(),
+      expand()
     ]
 })
 export class ContractComponent implements OnInit {
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
+  feedErrMess : string;
+  stage: number = 1;
+
+
   @ViewChild('fform') feedbackFormDirective;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private feedbackService: FeedbackService) {
     this.createForm();
-  }
+     }
   formErrors = {
     'firstname': '',
     'lastname': '',
@@ -75,7 +82,12 @@ export class ContractComponent implements OnInit {
   }
 
   onSubmit() {
+    this.stage = 2;
     this.feedback = this.feedbackForm.value;
+    this.feedbackService.submitFeedback(this.feedback)
+    .subscribe(feedback=>{this.feedback = feedback;
+    this.stage = 3;
+    setTimeout(() => { this.stage = 1; }, 5000);}, errmess => this.feedErrMess = <any>errmess);
     console.log(this.feedback);
     this.feedbackForm.reset({
       firstname: '',
@@ -87,9 +99,10 @@ export class ContractComponent implements OnInit {
       message: ''
     });
     this.feedbackFormDirective.resetForm();
-
-   
+    
   }
+
+
   onValueChanged(data?: any) {
     if (!this.feedbackForm) { return; }
     const form = this.feedbackForm;
